@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.magnifier
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
@@ -30,25 +29,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.wear.compose.foundation.CurvedTextStyle
 import androidx.wear.compose.material.Button
-import androidx.wear.compose.material.ButtonColors
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
-import com.jght.wearosstopwatch.R
+import androidx.wear.compose.material.curvedText
 import com.jght.wearosstopwatch.presentation.theme.WearOsStopWatchTheme
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -66,7 +62,7 @@ class MainActivity : ComponentActivity() {
                         .background(MaterialTheme.colors.background),
                     contentAlignment = Alignment.Center
                 ) {
-                    TimeText()
+
                     StopWatch(
                         state = timerState,
                         text = stopWatchText,
@@ -87,11 +83,26 @@ class MainActivity : ComponentActivity() {
         onReset: () -> Unit,
         modifier: Modifier = Modifier
     ) {
+
+        TimeText(
+            startCurvedContent =  {
+                curvedText(
+                    text = "GregMxQro",
+                    style = CurvedTextStyle(
+                        fontSize = 12.sp,
+                        color = Color.Green,
+                    )
+                )
+            }
+        )
+
         Column(
             modifier = modifier,
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = text,
